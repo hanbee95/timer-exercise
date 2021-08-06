@@ -1,0 +1,36 @@
+<body class="game_info" data-spy="scroll" data-target=".header">
+     <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="row">
+           <div class="full">
+              <div class="wrapper">
+                <h2>Select</h2>
+                <form action = "" method = "POST">
+                {% csrf_token %} 
+                 <ul id="options" class="select">
+                    <li><span id="setno"></span>How many set: 
+                    <input  name="setno-anw" type="number" ></li>
+                    <li><span id="break"></span>Break time(s): 
+                    <input  name="break-anw" type="number" ></li>
+                    <li><span id="exercise"></span>Exercise time(s) 
+                    <input  name="exercise-anw" type="number"></li>
+                 </ul>
+                <br>
+                <button class="button" id = "OK">GO </button>
+                </form>
+              </div>  
+           </div>
+        </div>
+     </div>
+  </div>
+<body class="game_info" data-spy="scroll" data-target=".header">
+     <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="row">
+           <div class="full">
+              <div class="right-match-time">
+                 <h2>Next Match</h2>           
+                 <u1 id="countdown-1" class="countdown">{{ totaltime }}</u1>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
