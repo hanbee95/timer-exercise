@@ -1,0 +1,138 @@
+html {
+  background-color: lightgray;
+}
+html,
+body {
+  margin: 0 auto;
+  padding: 0;
+  height: 100%;
+  display: flex;
+}
+
+body {
+  width: 100%;
+  max-width: 1200px;
+  background-color: white;
+}
+
+section {
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+section.left {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: beige;
+  max-width: 40%;
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    display: block;
+    text-align: center;
+  }
+  section.left {
+    display: block;
+    max-width: unset;
+  }
+  .right div input:not(#button) {
+    display: block;
+    margin: 0 auto;
+    width: 50% !important;
+  }
+}
+.right {
+  height: 100%;
+  background-color: white;
+}
+
+.right h1 {
+  font-size: 5rem;
+  line-height: 4rem;
+  text-transform: uppercase;
+  font-style: oblique;
+  opacity: .1;
+  margin-bottom: 1rem;
+  height: 15rem;
+}
+.right h1.timer {
+  opacity: 1;
+  text-transform: unset;
+}
+
+.right div {
+  position: relative;
+}
+
+.right div label {
+  position: relative;
+  left: 10px;
+  top: 2rem;
+  transition: all .3s;
+}
+
+.right div label.on {
+  left: 0;
+  top: 0;
+}
+
+label::after {
+  content: "*";
+  font-size: xx-small;
+  color: red;
+}
+
+.right div input:not(#button) {
+  line-height: 2rem;
+  margin-bottom: 1rem;
+  z-index: 9;
+  position: relative;
+  background: transparent;
+  display: block;
+  width: 30%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  opacity: 1;
+}
+
+header p {
+  font-size: 1rem;
+  color: #26d2b3;
+  margin: 0;
+}
+
+header p a {
+  font-size: 5.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  color: #26d2b3;
+  line-height: 4rem;
+}
+
+input#button {
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+}
+
+.result {
+  font-size: 1rem;
+  margin-top: 2rem;
+}
+
+.result span {
+  color: violet;
+  font-weight: bold;
+}
+
+.disNon {
+  display: none;
+}

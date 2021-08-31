@@ -1,0 +1,132 @@
+html {
+  display: flex;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  background-color: lightgray;
+}
+body {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  background-color: white;
+}
+
+header {
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: beige;
+  max-width: 40%;
+}
+header p {
+  font-size: 1rem;
+  color: #26d2b3;
+  margin: 0;
+}
+header p a {
+  font-size: 5.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  color: #26d2b3;
+  line-height: 4rem;
+}
+
+
+section {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+  background-color: white;
+}
+section h1 {
+  font-size: 5rem;
+  line-height: 4rem;
+  text-transform: uppercase;
+  font-style: oblique;
+  opacity: .1;
+  margin-bottom: 1rem;
+  height: 15rem;
+}
+section h1 span {
+  color: red;
+}
+section .title.timer {
+  opacity: 1;
+  text-transform: unset;
+}
+section form,
+section div {
+  position: relative;
+}
+
+section label {
+  position: relative;
+  left: 10px;
+  top: 2rem;
+  transition: all .3s;
+}
+section label.on {
+  left: 0;
+  top: 0;
+}
+section label::after {
+  content: " *";
+  font-size: xx-small;
+  color: red;
+}
+section input:not(#button) {
+  display: block;
+  width: 30%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  background: transparent;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  z-index: 9;
+}
+
+section input[type=number]::-webkit-inner-spin-button {
+  opacity: 1;
+}
+
+section input#button {
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+}
+
+.result {
+  font-size: 1rem;
+  margin-top: 2rem;
+}
+.result span {
+  color: violet;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    display: block;
+    text-align: center;
+  }
+  header {
+    display: block;
+    max-width: unset;
+  }
+  input:not(#button) {
+    display: block;
+    margin: 0 auto;
+    width: 50% !important;
+  }
+}

@@ -1,36 +1,58 @@
-<body class="game_info" data-spy="scroll" data-target=".header">
-     <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="row">
-           <div class="full">
-              <div class="wrapper">
-                <h2>Select</h2>
-                <form action = "" method = "POST">
-                {% csrf_token %} 
-                 <ul id="options" class="select">
-                    <li><span id="setno"></span>How many set: 
-                    <input  name="setno-anw" type="number" ></li>
-                    <li><span id="break"></span>Break time(s): 
-                    <input  name="break-anw" type="number" ></li>
-                    <li><span id="exercise"></span>Exercise time(s) 
-                    <input  name="exercise-anw" type="number"></li>
-                 </ul>
-                <br>
-                <button class="button" id = "OK">GO </button>
-                </form>
-              </div>  
-           </div>
-        </div>
-     </div>
-  </div>
-<body class="game_info" data-spy="scroll" data-target=".header">
-     <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="row">
-           <div class="full">
-              <div class="right-match-time">
-                 <h2>Next Match</h2>           
-                 <u1 id="countdown-1" class="countdown">{{ totaltime }}</u1>
-              </div>
-           </div>
-        </div>
-     </div>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+  <link rel="stylesheet" href="hb_style.css">
+</head>
+<body>
+
+  <section class="left">
+    <header>
+      <p>
+        <a href="">ETC.</a><br>Exercise Timer Calculator
+      </p>
+      <div></div>
+      <nav>
+        <a href="/"></a>
+      </nav>
+    </header>
+  </section>
+
+  <section class="right">
+    <h1 class="h1Title">Set <br> your <br> Timer</h1>
+    <h1 class="timer disNon">
+      You left <br><span style="color:red;">0</span><br> seconds!
+      <script></script>
+    </h1>
+
+    <div>
+      <form action="/actionpage.html">
+        <label for="set">How many set <sub></sub></label>
+        <input type="number" name="set" id="set" min="1" onchange="showCount('set')">
+
+        <label for="breakt">Break time(s) <sub></sub></label>
+        <input type="number" name="breakt" id="breakt" min="1" onchange="showCount('breakt')"> 
+
+        <label for="times">Exercise time(s) <sub></sub></label>
+        <input type="number" name="times" id="times" min="1" onchange="showCount('times')">
+
+        <input type="button" id="button" value="start" onclick="starttimer()">
+      </form>
+    </div>
+    <div class="result">
+      I'm going to exercise <span id="times-span">0</span> min 
+      with <span id="breakt-span">0</span> min break times 
+      in <span id="set-span">0</span> set.
+    </div>
+
+  </section>
+  
+</body>
+</html>

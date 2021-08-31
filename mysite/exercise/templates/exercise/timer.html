@@ -1,60 +1,52 @@
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/jquery.countdown.css"> 
-<script type="text/javascript" src="js/jquery.plugin.js"></script> 
-<script type="text/javascript" src="js/jquery.countdown.js"></script>
-<script type="text/javascript">$(selector).countdown({until: liftoffTime});</script>
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <script src="{% static 'app.js' %}"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+  <link href="{% static 'hb_style.css' %}" rel="stylesheet">
+</head>
 
-<body class="game_info" data-spy="scroll" data-target=".header">
-     <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="row">
-           <div class="full">
-              <div class="wrapper">
-                <h2>Select</h2>
-                <form action = "" method = "POST" onsubmit="return validateForm()" required>
-                {% csrf_token %} 
-                 <ul id="options" class="select">
-                    <li><span id="setno"></span>How many set: 
-                    <input  name="setno-anw" type="number" ></li>
-                    <li><span id="break"></span>Break time(s): 
-                    <input  name="break-anw" type="number" ></li>
-                    <li><span id="exercise"></span>Exercise time(s) 
-                    <input  name="exercise-anw" type="number"></li>
-                 </ul>
-                <br>
-                <button class="button" id = "OK" onclick="hide()">GO </button>
-                </form>
-                <button class="button" id = "OK" onclick="hide()">GO </button>
-              </div>  
-           </div>
-        </div>
-     </div>
-  </div>
-  <body class="game_info" data-spy="scroll" data-target=".header">
-     <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="row">
-           <div class="full">
-              <div class="right-match-time">
-                 <h2>Next Match</h2>           
-                 <u1 id="countdown-1" class="countdown">{{ totaltime }}</u1>
-              </div>
-           </div>
-        </div>
-     </div>
-  </div>
-  <script type="text/javascript">
-    function validateForm() {
-      var x = document.forms["myForm"]["fname"].value;
-      if (x == "") {
-        alert("Name must be filled out");
-        return false;
-      }
-    }
-    function hide() {
-      var x = document.getElementById("countdown-1");
-      if (x.style.display === "none") {
-        x.style.display = "block";
-      } else {
-        x.style.display = "none";
-      }
-    }
-  </script> 
+<body>
+
+  <header>
+    <p>
+      <a href="">ETC.</a><br>Exercise Timer Calculator
+    </p>
+    <!--<nav>
+      <a href="/"></a>
+    </nav>-->
+  </header>
+
+  <section>
+    <h1 class="title">Set <br> your <br> Timer</h1>
+    
+    <form action="/actionpage.html">
+      
+      <label for="times">Exercise time(s)</label>
+      <input type="number" name="times" id="times" min="1" onchange="showCount('times')">
+
+      <label for="breakt">Break time(s)</label>
+      <input type="number" name="breakt" id="breakt" min="1" onchange="showCount('breakt')">
+
+      <label for="set">How many set</label>
+      <input type="number" name="set" id="set" min="1" onchange="showCount('set')">
+      
+      <input type="button" id="button" value="start" onclick="setTimer()">
+    </form>
+    
+    <div class="result">
+      I'm going to exercise <span id="times-span">0</span>s and then take <span id="breakt-span">0</span>s break times. <br>
+      I will do this <span id="set-span">0</span> set.
+    </div>
+    
+  </section>
+  
+</body>
+</html>

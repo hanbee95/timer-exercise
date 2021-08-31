@@ -5,6 +5,13 @@ from django.views import generic
 from .models import Choice, Question
 from django.template import loader
 from django.contrib.auth.forms import AuthenticationForm
+import mimetypes
+from .models import ExerTime
+
+def get_data(request):
+    #Working on this - HAN
+    if request.method=="POST":
+        print("checkpoint")
 
 class IndexView(generic.ListView):
     template_name = 'exercise/index.html'
@@ -44,6 +51,7 @@ def detail(request, question_id):
 #     template_name = 'exercise/timer.html'
 
 def timer(request):
+    print ("checkpoint")
     totaltime = 0
     setno = 0
     breakt = 0
@@ -55,7 +63,8 @@ def timer(request):
         totaltime = 0
     else: 
         totaltime = int(setno)*(int(breakt)-1)+int(setno)*int(exerciset)
-
+    exertime_list =  ExerTime.objects.order_by('-setno') #WORKING ON THIS -HAN
+    print (exertime_list) #WORKING ON THIS -HAN
     request.session['totaltime'] = totaltime
     print (totaltime)
     print (request.session['totaltime'])

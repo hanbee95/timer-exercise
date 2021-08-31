@@ -23,3 +23,10 @@ class Choice(models.Model):
 
 class TotalTime(models.Model):
     totalTime = models.IntegerField()
+
+class ExerTime(models.Model):
+    # working on this - HAN
+    setno = models.IntegerField()
+    exert = models.IntegerField()
+    breakt = models.IntegerField()
+    totalt = models.IntegerField()

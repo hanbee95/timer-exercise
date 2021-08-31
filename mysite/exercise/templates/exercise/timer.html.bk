@@ -1,0 +1,62 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.countdown.css"> 
+<script type="text/javascript" src="js/jquery.plugin.js"></script> 
+<script type="text/javascript" src="js/jquery.countdown.js"></script>
+<script type="text/javascript">$(selector).countdown({until: liftoffTime});</script>
+
+<body class="game_info" data-spy="scroll" data-target=".header">
+     <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="row">
+           <div class="full">
+              <div class="wrapper">
+                <h2>Select</h2>
+                <form action = "" method = "POST" onsubmit="return validateForm()" required>
+                {% csrf_token %} 
+                 <ul id="options" class="select">
+                    <li><span id="setno"></span>How many set: 
+                    <input  name="setno-anw" type="number" ></li>
+                    <li><span id="break"></span>Break time(s): 
+                    <input  name="break-anw" type="number" ></li>
+                    <li><span id="exercise"></span>Exercise time(s) 
+                    <input  name="exercise-anw" type="number"></li>
+                 </ul>
+                <br>
+                <button class="button" id = "OK" onclick="hide()">GO </button>
+                </form>
+                <button class="button" id = "OK2" onclick="hide()">GO </button>
+              </div>  
+           </div>
+        </div>
+     </div>
+  </div>
+  <body class="game_info" data-spy="scroll" data-target=".header">
+     <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="row">
+           <div class="full">
+              <div class="right-match-time">
+                 <h2>Next Match</h2>           
+                 <u1 id="countdown-1" class="countdown">{{ totaltime }}</u1>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+  <script type="text/javascript">
+    function validateForm() {
+      var x = document.forms["myForm"]["fname"].value;
+      if (x == "") {
+        alert("Name must be filled out");
+        return false;
+      }
+    }
+    function hide() {
+      var x = document.getElementById("countdown-1");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+  $(document).ready(function(){
+   $('#countdown-1').countdown({until: liftoffTime});})
+  </script> 
