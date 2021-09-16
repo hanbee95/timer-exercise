@@ -87,6 +87,28 @@ function breakTimer() {
     $('.timer').html('Finish!');
     $('section input[type=button]').removeAttr('disabled');
     set = Number(document.getElementById('set').value);
+    console.log("finish")
+    console.log(Number(document.getElementById('breakt').value))
+    console.log(Number(document.getElementById('set').value))
+    console.log(Number(document.getElementById('times').value))
+    $.ajax({
+        type: "POST",
+        url: '/exercise/timer',
+        data: {
+            "times": Number(document.getElementById('times').value),
+            "breakt": Number(document.getElementById('breakt').value),
+            "set": Number(document.getElementById('set').value),
+        },
+        dataType: "json",
+        success: function (data) {
+            // any process in data
+            alert("successfull")
+        },
+        failure: function () {
+            alert("failure");
+        }
+    });
+    window.location.href="http://127.0.0.1:8000/exercise/timer";  
   }
 
 }

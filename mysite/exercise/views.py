@@ -7,6 +7,7 @@ from django.template import loader
 from django.contrib.auth.forms import AuthenticationForm
 import mimetypes
 from .models import ExerTime
+from django.views.decorators.csrf import csrf_exempt
 
 def get_data(request):
     #Working on this - HAN
@@ -50,27 +51,38 @@ def detail(request, question_id):
 #     model = TotalTime
 #     template_name = 'exercise/timer.html'
 
+@csrf_exempt
 def timer(request):
     print ("checkpoint")
-    totaltime = 0
-    setno = 0
-    breakt = 0
-    exerciset = 0
-    setno = (request.POST.get('setno-anw', ''))
-    breakt = (request.POST.get('break-anw', ''))
-    exerciset = (request.POST.get('exercise-anw', ''))
-    if (setno == '' or breakt == '' or exerciset == '' ):
-        totaltime = 0
-    else: 
-        totaltime = int(setno)*(int(breakt)-1)+int(setno)*int(exerciset)
-    exertime_list =  ExerTime.objects.order_by('-setno') #WORKING ON THIS -HAN
-    print (exertime_list) #WORKING ON THIS -HAN
-    request.session['totaltime'] = totaltime
-    print (totaltime)
-    print (request.session['totaltime'])
-    #return render(request, 'exercise/timer.html')
-    time = {"totaltime": totaltime}
-    #time = {"totaltime": request.session.get('totaltime')}
+    t_times = request.POST.get('times',None)
+    t_breakt = request.POST.get('breakt',None)
+    t_set = request.POST.get('set',None)
+    print (t_times)
+    print (t_breakt)
+    print (t_set)
+    time = {"times": t_times,
+            "breakt": t_breakt,
+            "set": t_set}
+    #totaltime = 0
+    #setno = 0
+    #breakt = 0
+    #exerciset = 0
+    #setno = (request.POST.get('set', ''))
+    #breakt = (request.POST.get('breakt', ''))
+    #exerciset = (request.POST.get('times', ''))
+    # if (setno == '' or breakt == '' or exerciset == '' ):
+    #     totaltime = 0
+    # else: 
+    #     totaltime = int(setno)*(int(breakt)-1)+int(setno)*int(exerciset)
+    # print (setno)
+    # exertime_list =  ExerTime.objects.order_by('-setno') #WORKING ON THIS -HAN
+    # print (exertime_list) #WORKING ON THIS -HAN
+    # request.session['totaltime'] = totaltime
+    # print (totaltime)
+    # print (request.session['totaltime'])
+    # #return render(request, 'exercise/timer.html')
+    # time = {"totaltime": totaltime}
+    # #time = {"totaltime": request.session.get('totaltime')}
     return render(request, 'exercise/timer.html', time)
 
 def showtimer(request):

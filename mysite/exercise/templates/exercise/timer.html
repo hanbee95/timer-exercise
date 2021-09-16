@@ -27,7 +27,8 @@
   <section>
     <h1 class="title">Set <br> your <br> Timer</h1>
     
-    <form action="/actionpage.html">
+    <form action="/actionpage.html" method="POST">
+    {% csrf_token %}
       
       <label for="times">Exercise time(s)</label>
       <input type="number" name="times" id="times" min="1" onchange="showCount('times')">
