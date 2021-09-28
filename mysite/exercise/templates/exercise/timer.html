@@ -46,6 +46,14 @@
       I'm going to exercise <span id="times-span">0</span>s and then take <span id="breakt-span">0</span>s break times. <br>
       I will do this <span id="set-span">0</span> set.
     </div>
+
+    <div class="test">
+      <p>WORKING ON THIS-HAN</p>
+      {% for exertime in exer_list %}
+      <p>{{exertime.exerid}}, {{exertime.setno}}</p>
+      {% endfor %}
+      <p>end</p>
+    </div>
     
   </section>
   

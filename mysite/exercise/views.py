@@ -8,6 +8,7 @@ from django.contrib.auth.forms import AuthenticationForm
 import mimetypes
 from .models import ExerTime
 from django.views.decorators.csrf import csrf_exempt
+import time
 
 def get_data(request):
     #Working on this - HAN
@@ -32,6 +33,7 @@ class ResultsView(generic.DetailView):
     template_name = 'exercise/results.html'
 
 
+
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
     template = loader.get_template('exercise/index.html')
@@ -48,21 +50,52 @@ def detail(request, question_id):
     return render(request, 'exercise/detail.html', {'question': question})
 
 # class TimerView(generic.TimerView):
-#     model = TotalTime
+#     model = ExerTime
+#     context_object_name = 'my_exer_list'
+#     queryset = ExerTime.objects.all()
 #     template_name = 'exercise/timer.html'
 
 @csrf_exempt
 def timer(request):
+
     print ("checkpoint")
-    t_times = request.POST.get('times',None)
-    t_breakt = request.POST.get('breakt',None)
-    t_set = request.POST.get('set',None)
+    time.sleep(1)
+    #exertime = get_object_or_404(ExerTime, pk=id)
+    t_times = int(request.POST.get('times',0))
+    t_breakt = int(request.POST.get('breakt',0))
+    t_set = int(request.POST.get('set',0))
+    print(type(t_times))
+    t_total =0
+    t_total = (t_set)*((t_breakt)-1)+(t_set)*(t_times)
     print (t_times)
     print (t_breakt)
     print (t_set)
-    time = {"times": t_times,
+
+    exertime = ExerTime(
+        setno=t_set,
+        exert=t_times,
+        breakt=t_breakt,
+        totalt=t_total
+        )
+    if(exertime.setno != 0) :
+        exertime.save()
+    #print (ExerTime.objects)
+    print (ExerTime.objects.all())
+    print (ExerTime.objects.all().values('exerid'))
+    #tmp = ExerTime.objects.get(setno='1')
+    #print(tmp)
+    print (exertime)
+    a = "chekc"
+    print (a)
+    time_hash = {"times": t_times,
             "breakt": t_breakt,
-            "set": t_set}
+            "set": t_set,
+            "a": a, }
+    #exer_list = ExerTime.objects.order_by('-exerid')[:5]
+    exer_list = ExerTime.objects.all()
+    context = {'exer_list': exer_list}
+    print (exer_list)
+    #print(ExerTime.objects.all())
     #totaltime = 0
     #setno = 0
     #breakt = 0
@@ -83,7 +116,7 @@ def timer(request):
     # #return render(request, 'exercise/timer.html')
     # time = {"totaltime": totaltime}
     # #time = {"totaltime": request.session.get('totaltime')}
-    return render(request, 'exercise/timer.html', time)
+    return render(request, 'exercise/timer.html', context)
 
 def showtimer(request):
     setno = (request.POST.get('setno-anw', ''))

@@ -6,7 +6,7 @@ from . import views
 app_name = 'exercise'
 urlpatterns = [
     # ex: /exercise/
-    url(r'^exercise/timer$',views.timer, name='timer'),
+    #url(r'^exercise/timer$',views.timer, name='timer'),
     path('', views.index, name='index'),
     path('timer', views.timer, name='timer'),   
     path('timer/showtimer', views.showtimer, name='showtimer'), 

@@ -26,6 +26,7 @@ class TotalTime(models.Model):
 
 class ExerTime(models.Model):
     # working on this - HAN
+    exerid = models.AutoField(primary_key=True)
     setno = models.IntegerField()
     exert = models.IntegerField()
     breakt = models.IntegerField()
