@@ -44,7 +44,6 @@ keyboard==0.13.5
 keyring==10.6.0
 keyrings.alt==3.0
 lxml==4.2.1
-MarkupSafe==1.0
 mccabe==0.6.1
 merakicommons==1.0.10
 multidict==5.1.0
