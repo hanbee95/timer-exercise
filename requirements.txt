@@ -19,7 +19,6 @@ constantly==15.1.0
 cryptography==2.1.4
 datapipelines==1.0.7
 decorator==4.4.2
-discord.py==1.7.3
 Django==3.2.5
 docopt==0.6.2
 et-xmlfile==1.1.0
